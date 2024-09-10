@@ -17,7 +17,10 @@ const ipx = createIPX({
 const ipxServer = createIPXNodeServer(ipx);
 
 import router from '@adonisjs/core/services/router';
+import AuthController from '#controllers/auth_controller';
 router.on('/').renderInertia('home', { version: 6 })
+router.get('/login', [AuthController, 'login'])
+router.get('/register', [AuthController, 'register'])
 router.get('/images/*', async ({ request, response }) => {
     const fullPath = request.param('*').join('/')
     console.log(fullPath)
