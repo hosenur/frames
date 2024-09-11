@@ -9,7 +9,6 @@ import { TextField } from "~/components/ui/text-field";
 
 
 export default function Register({props}: { props: any }) {
-    console.log(props)
     const [values, setValues] = useState({
         email: '',
         password: '',

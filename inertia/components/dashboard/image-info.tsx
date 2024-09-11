@@ -3,10 +3,11 @@ import { ImageType } from '~/types'
 import MotionNumber from 'motion-number'
 
 type ImageInfoProps = {
-    image: ImageType,
+    image: ImageType | null
     baseURL: string
 }
 export default function ImageInfo({ image, baseURL }: ImageInfoProps) {
+    if (!image) return null
     const [width, setWidth] = useState<number | null>(null)
     const [finalSize, setFinalSize] = useState<{ value: string, unit: string } | null>(null)
 

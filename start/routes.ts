@@ -24,12 +24,13 @@ import DashboardController from '#controllers/dashboard_controller';
 import env from './env.js';
 
 router.get('/', [DashboardController, 'index']).use(middleware.auth())
-
-router.get('/login', [AuthController, 'login'])
-router.get('/register', [AuthController, 'register'])
-router.post('/register', [AuthController, 'create'])
-router.post('/login', [AuthController, 'verify'])
 router.post('/images/upload', [ImagesController, 'upload']).use(middleware.auth())
+
+
+router.get('/login', [AuthController, 'login']).use(middleware.guest())
+router.get('/register', [AuthController, 'register']).use(middleware.guest())
+router.post('/register', [AuthController, 'create']).use(middleware.guest())
+router.post('/login', [AuthController, 'verify']).use(middleware.guest())
 
 
 
@@ -38,7 +39,6 @@ router.post('/images/upload', [ImagesController, 'upload']).use(middleware.auth(
 // Mounting the IPX server on images route
 router.get('/images/*', async ({ request, response }) => {
     const fullPath = request.param('*').join('/')
-    console.log(fullPath)
     request.request.url = `/${fullPath}`;
     return ipxServer(request.request, response.response)
 })

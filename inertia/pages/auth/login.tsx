@@ -7,7 +7,6 @@ import { TextField } from "~/components/ui/text-field";
 
 
 export default function Login({ props }: { props: any }) {
-    console.log(props)
     const [values, setValues] = useState({
         email: '',
         password: '',
