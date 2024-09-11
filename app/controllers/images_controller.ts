@@ -5,17 +5,14 @@ import app from '@adonisjs/core/services/app'
 
 export default class ImagesController {
     async upload({ request, response, auth }: HttpContext) {
-        const image = request.file('image', {
-            extnames: ['jpg', 'jpeg', 'png'],
+        const images = request.files('images')
+        images.forEach((image) => {
+            const name = `${cuid()}.${image.extname}`
+            image.move(app.makePath('storage/uploads'), {
+                name: name,
+            })
+            Image.create({ name, owner: auth.user?.id })
         })
-        if (!image) {
-            return response.status(400).send('No image found')
-        }
-        const name = `${cuid()}.${image.extname}`
-        await image?.move(app.makePath('storage/uploads'), {
-            name: name,
-        })
-        await Image.create({ name, owner: auth.user?.id })
         return response.redirect(`/`)
     }
 }

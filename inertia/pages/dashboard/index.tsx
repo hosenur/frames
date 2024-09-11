@@ -1,18 +1,21 @@
 import { Head, useForm } from '@inertiajs/react'
+import { useState } from 'react'
 import { Button } from '~/components/ui/button'
+import { Card } from '~/components/ui/card'
 import { FileTrigger } from '~/components/ui/file-trigger'
 import { Form } from '~/components/ui/form'
 import AppLayout from '~/layouts/AppLayout'
+import { ImageType } from '~/types'
 
-export default function Home(props: { version: number }) {
+export default function Home(props: { images: ImageType[] }) {
 
-  const { data, setData, post, progress } = useForm<{ image: File | null }>({
-    image: null,
+  const { data, setData, post, progress } = useForm<{ images: FileList | null }>({
+    images: null,
   })
+  const [selectedImage, setSelectedImage] = useState()
   console.log(props)
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log(data)
     post('/images/upload')
   }
   return (
@@ -21,17 +24,22 @@ export default function Home(props: { version: number }) {
       <div>
         <Form onSubmit={handleSubmit}>
           <FileTrigger
-            allowsMultiple={false}
-            onSelect={(e:FileList) => {
-              setData('image', e[0])
+            allowsMultiple={true}
+            acceptedFileTypes={['image/*']}
+            onSelect={(e: FileList | null) => {
+              if (!e) return
+              setData('images', e)
             }}
           />
           <Button type="submit">Upload</Button>
         </Form>
       </div>
-      <div>
+      <div className='flex flex-wrap gap-4'>
         {props.images.map((image) => (
-          <img src={`http://localhost:3333/images/_/${image.name}`} alt={image.name} />
+          <Card key={image.id}>
+
+            <img src={`http://localhost:3333/images/w_240/${image.name}`} className='w-60 object-cover' alt={image.name} />
+          </Card>
         ))}
       </div>
     </AppLayout>

@@ -46,7 +46,7 @@
     --input: 91.97% 0.004 286.32;
     --ring: var(--primary);
     --toggle: 87.16% 0.006 286.28;
-    --radius: 0.5rem;
+    --radius: 0rem;
   }
 
   .dark {
@@ -93,7 +93,7 @@
     }
 
     * {
-        @apply border-border text-sm;
+        @apply border-border text-sm dark;
         font-feature-settings: 'cv11', 'ss01';
         font-variation-settings: 'opsz' 850;
     }

@@ -3,10 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 export default class DashboardController {
     async index({ auth, inertia }: HttpContext) {
-        const user = await auth.user
-        const ID = user?.id
-        const images = await Image.findManyBy('owner', ID)
-        console.log(images)
+        const images = await Image.findManyBy('owner', auth.user!.id)
         return inertia.render('dashboard/index', { images })
     }
 }
