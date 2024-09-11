@@ -33,7 +33,7 @@ export default function Home(props: { images: ImageType[], baseURL: string }) {
           <Button type="submit">Upload</Button>
         </Form>
       </div>
-      <div className='w-full flex'>
+      <div className='w-full flex my-4'>
 
         <ImageGallery baseURL={props.baseURL} images={props.images} selectedImage={null} setSelectedImage={setSelectedImage} />
         <ImageInfo baseURL={props.baseURL} image={selectedImage} />

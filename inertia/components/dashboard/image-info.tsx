@@ -38,7 +38,7 @@ export default function ImageInfo({ image, baseURL }: ImageInfoProps) {
     }, [width])
     return (
         <div className='border w-3/12 p-2'>
-            <img src={`${baseURL}/images/w_240/${image.name}`} className='w-full object-cover' alt={image.name} />
+            <img src={`${baseURL}/images/_/${image.name}`} className='w-full object-cover  h-60' alt={image.name} />
             <div className='grid grid-cols-5 gap-2 mt-2'>
                 <div className='border px-2 py-1 cursor-pointer' onClick={() => setWidth(100)}>
                     100
