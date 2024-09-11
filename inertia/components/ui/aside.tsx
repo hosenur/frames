@@ -88,7 +88,7 @@ const Layout = ({
 
       <main className="flex flex-1 pt-12 lg:pt-0 flex-col lg:min-w-0 lg:pl-[17rem]">
         <div className="grow sm:p-6 p-4 lg:p-10 relative lg:ring-1 lg:ring-border">
-          <div className="mx-auto max-w-6xl">{children}</div>
+          <div className="mx-auto w-full">{children}</div>
         </div>
       </main>
     </div>

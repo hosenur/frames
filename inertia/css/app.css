@@ -93,13 +93,13 @@
     }
 
     * {
-        @apply border-border font-mono;
+        @apply border-border text-sm;
         font-feature-settings: 'cv11', 'ss01';
         font-variation-settings: 'opsz' 850;
     }
 
     body {
-        @apply bg-bg text-fg;
+        @apply bg-bg text-fg font-geist ;
     }
 }
 

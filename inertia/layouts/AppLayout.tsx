@@ -23,8 +23,10 @@ import { Avatar } from "~/components/ui/avatar"
 import { Button } from "~/components/ui/button"
 import { Link } from "~/components/ui/link"
 import { Menu } from "~/components/ui/menu"
+import { usePage } from "@inertiajs/react"
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
+    const { user } = usePage().props
     return (
         <Aside.Layout
             navbar={
@@ -123,7 +125,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                                     className="-ml-1.5"
                                     src="https://github.com/irsyadadl.png"
                                 />
-                                Irsyad A. Panjaitan
+                                {user.email}
                                 <IconChevronLgDown className="right-3 absolute group-pressed:rotate-180 transition-transform" />
                             </Button>
                             <Menu.Content placement="top" className="min-w-[--trigger-width]">

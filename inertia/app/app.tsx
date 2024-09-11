@@ -2,6 +2,15 @@
 /// <reference path="../../config/inertia.ts" />
 
 import '../css/app.css';
+import '@fontsource/geist-mono/100.css';
+import '@fontsource/geist-mono/200.css';
+import '@fontsource/geist-mono/300.css';
+import '@fontsource/geist-mono/400.css';
+import '@fontsource/geist-mono/500.css';
+import '@fontsource/geist-mono/600.css';
+import '@fontsource/geist-mono/700.css';
+import '@fontsource/geist-mono/800.css';
+import '@fontsource/geist-mono/900.css';
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'

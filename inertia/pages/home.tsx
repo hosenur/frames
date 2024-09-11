@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react'
 import AppLayout from '~/layouts/AppLayout'
 
 export default function Home(props: { version: number }) {
+  console.log(props)
   return (
     <AppLayout>
       <Head title="Homepage" />
