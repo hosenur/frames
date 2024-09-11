@@ -59,7 +59,13 @@ export default function ImageInfo({ image, baseURL }: ImageInfoProps) {
 
                 <div className='flex justify-between'>
                     <span className='text-muted-fg'>ORIGINAL SIZE</span>
-                    <span>2.4 MB</span>
+                    <span className='flex items-center gap-1'>
+                        <MotionNumber
+                            value={Math.round(image.size / 1024 / 1024 * 100) / 100}
+                            format={{ notation: 'compact' }}
+                            locales="en-US" />
+                        MB
+                    </span>
                 </div>
                 <div className='flex justify-between'>
                     <span className='text-muted-fg'>IMAGE SLUG</span>

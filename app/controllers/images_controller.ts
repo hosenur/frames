@@ -8,10 +8,11 @@ export default class ImagesController {
         const images = request.files('images')
         images.forEach((image) => {
             const name = `${cuid()}.${image.extname}`
+            const size = image.size
             image.move(app.makePath('storage/uploads'), {
                 name: name,
             })
-            Image.create({ name, owner: auth.user?.id })
+            Image.create({ name, owner: auth.user?.id, size })
         })
         return response.redirect(`/`)
     }

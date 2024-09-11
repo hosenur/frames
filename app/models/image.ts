@@ -9,6 +9,9 @@ export default class Image extends BaseModel {
   declare name: string
 
   @column()
+  declare size: number
+
+  @column()
   declare owner: number
 
   @column.dateTime({ autoCreate: true })
