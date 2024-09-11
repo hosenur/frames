@@ -11,6 +11,7 @@ import {
     IconCreditCard,
     IconDashboard,
     IconEnvelope,
+    IconGallery,
     IconLogout,
     IconMessage,
     IconSearch,
@@ -88,8 +89,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     </Aside.Header>
                     <Aside.Content>
                         <Aside.Section>
-                            <Aside.Item isCurrent icon={IconDashboard} href="#">
-                                Overview
+                            <Aside.Item isCurrent icon={IconGallery} href="#">
+                                Media
                             </Aside.Item>
                             <Aside.Item icon={IconSettings} href="#">
                                 Settings
@@ -104,13 +105,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                                 Messages
                             </Aside.Item>
                         </Aside.Section>
-                        <Aside.Section title="Projects" items={projects}>
-                            {(item) => (
-                                <Aside.Item id={item.name} href={item.href}>
-                                    {item.name}
-                                </Aside.Item>
-                            )}
-                        </Aside.Section>
                     </Aside.Content>
                     <Aside.Footer className="lg:flex lg:flex-row hidden items-center">
                         <Menu>
@@ -119,12 +113,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                                 aria-label="Profile"
                                 className="group w-full justify-start flex"
                             >
-                                <Avatar
-                                    size="extra-small"
-                                    shape="square"
-                                    className="-ml-1.5"
-                                    src="https://github.com/irsyadadl.png"
-                                />
                                 {user.email}
                                 <IconChevronLgDown className="right-3 absolute group-pressed:rotate-180 transition-transform" />
                             </Button>
@@ -157,12 +145,3 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </Aside.Layout>
     )
 }
-
-const projects = [
-    { name: "Website Redesign", href: "#" },
-    { name: "New Product Launch", href: "#" },
-    { name: "Market Research", href: "#" },
-    { name: "Sales Dashboard", href: "#" },
-    { name: "Customer Feedback System", href: "#" },
-    { name: "Mobile App Development", href: "#" }
-]
