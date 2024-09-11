@@ -1,12 +1,14 @@
 import { Head, useForm } from '@inertiajs/react'
 import { useState } from 'react'
+import ImageGallery from '~/components/dashboard/image-gallery'
+import ImageInfo from '~/components/dashboard/image-info'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { FileTrigger } from '~/components/ui/file-trigger'
 import { Form } from '~/components/ui/form'
 import AppLayout from '~/layouts/AppLayout'
 import { ImageType } from '~/types'
-export default function Home(props: { images: ImageType[] }) {
+export default function Home(props: { images: ImageType[], baseURL: string }) {
 
   const { data, setData, post, progress } = useForm<{ images: FileList | null }>({
     images: null,
@@ -20,7 +22,7 @@ export default function Home(props: { images: ImageType[] }) {
   return (
     <AppLayout>
       <Head title="Homepage" />
-      <div>
+      {/* <div>
         <Form onSubmit={handleSubmit}>
           <FileTrigger
             allowsMultiple={true}
@@ -32,14 +34,11 @@ export default function Home(props: { images: ImageType[] }) {
           />
           <Button type="submit">Upload</Button>
         </Form>
-      </div>
-      <div className='flex flex-wrap gap-4'>
-        {props.images.map((image) => (
-          <Card key={image.id}>
+      </div> */}
+      <div className='w-full flex'>
 
-            <img src={`https://frames.hosenur.cloud/images/w_240/${image.name}`} className='w-60 object-cover' alt={image.name} />
-          </Card>
-        ))}
+      <ImageGallery baseURL={props.baseURL} images={props.images} selectedImage={null} setSelectedImage={() => { }} />
+      <ImageInfo baseURL={props.baseURL} image={props.images[0]} />
       </div>
     </AppLayout>
   )
