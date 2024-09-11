@@ -6,7 +6,6 @@ import { FileTrigger } from '~/components/ui/file-trigger'
 import { Form } from '~/components/ui/form'
 import AppLayout from '~/layouts/AppLayout'
 import { ImageType } from '~/types'
-import { getDomain } from '../../../lib/utils'
 export default function Home(props: { images: ImageType[] }) {
 
   const { data, setData, post, progress } = useForm<{ images: FileList | null }>({
@@ -38,7 +37,7 @@ export default function Home(props: { images: ImageType[] }) {
         {props.images.map((image) => (
           <Card key={image.id}>
 
-            <img src={`${getDomain()}/images/w_240/${image.name}`} className='w-60 object-cover' alt={image.name} />
+            <img src={`https://frames.hosenur.cloud/images/w_240/${image.name}`} className='w-60 object-cover' alt={image.name} />
           </Card>
         ))}
       </div>
