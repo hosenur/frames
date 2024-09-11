@@ -8,13 +8,13 @@ export default class AuthController {
     async register({ inertia }: HttpContext) {
         return inertia.render('auth/register')
     }
-    async create({ request, auth, inertia }: HttpContext) {
+    async create({ request, auth, response }: HttpContext) {
         const { email, password } = request.body()
         const user = await User.create({ email, password })
         await auth.use('web').login(user)
-        return inertia.render('auth/register')
+        return response.redirect('/')
     }
-    async verify({ request, auth, inertia, response }: HttpContext) {
+    async verify({ request, auth, response }: HttpContext) {
         const { email, password } = request.body()
         const user = await User.verifyCredentials(email, password)
         await auth.use('web').login(user)

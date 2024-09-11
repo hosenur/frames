@@ -16,7 +16,7 @@ export default function Register({props}: { props: any }) {
     })
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        router.post('/auth/register', values)
+        router.post('/register', values)
     }
     return (
         <div className="flex items-center justify-center h-screen">

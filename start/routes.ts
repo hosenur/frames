@@ -20,12 +20,15 @@ import router from '@adonisjs/core/services/router';
 import AuthController from '#controllers/auth_controller';
 import { middleware } from './kernel.js';
 import ImagesController from '#controllers/images_controller';
-router.on('/').renderInertia('home').use(middleware.auth());
-router.get('/login', [AuthController, 'login'])
-router.get('/register', [AuthController, 'register'])
-router.post('/register', [AuthController, 'create'])
-router.post('/login', [AuthController, 'verify'])
-router.post('/images/upload', [ImagesController, 'upload'])
+import DashboardController from '#controllers/dashboard_controller';
+
+router.get('/', [DashboardController, 'index']).use(middleware.auth());
+
+router.get('/login', [AuthController, 'login']).use(middleware.guest())
+router.get('/register', [AuthController, 'register']).use(middleware.guest())
+router.post('/register', [AuthController, 'create']).use(middleware.guest())
+router.post('/login', [AuthController, 'verify']).use(middleware.guest())
+router.post('/images/upload', [ImagesController, 'upload']).use(middleware.auth())
 
 
 
