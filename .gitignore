@@ -21,7 +21,7 @@ yarn-error.log
 .idea
 .vscode
 *.sqlite3
-
+*.sh
 # Platform specific
 .DS_Store
 storage/uploads/*.png
