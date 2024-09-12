@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ImageType } from '~/types'
 import MotionNumber from 'motion-number'
+import { IconArrowDown, IconChevronDoubleDown } from 'justd-icons'
 
 type ImageInfoProps = {
     image: ImageType | null
@@ -10,9 +11,10 @@ export default function ImageInfo({ image, baseURL }: ImageInfoProps) {
     if (!image) return null
     const [width, setWidth] = useState<number | null>(null)
     const [finalSize, setFinalSize] = useState<{ value: string, unit: string } | null>(null)
+    const [difference, setDifference] = useState<{ type: 'increase' | 'decrease', percent: number } | null>(null)
 
     const getImageSize = () => {
-        const URL = `${baseURL}/images/w_${width}/${image.name}`
+        const URL = `${baseURL}/images/s_${width}x${width}/${image.name}`
         fetch(URL)
             .then((response) => response.blob())
             .then((blob) => {
@@ -28,6 +30,12 @@ export default function ImageInfo({ image, baseURL }: ImageInfoProps) {
                         unit: 'KB'
                     })
                 }
+                const diff = image.size - size
+                console.log(Math.round(diff / image.size))
+                setDifference({
+                    type: diff > 0 ? 'increase' : 'decrease',
+                    percent: (diff / image.size)
+                })
             })
     }
     useEffect(() => {
@@ -49,8 +57,8 @@ export default function ImageInfo({ image, baseURL }: ImageInfoProps) {
                 <div className='border px-2 py-1 cursor-pointer' onClick={() => setWidth(400)}>
                     400
                 </div>
-                <div className='border px-2 py-1 cursor-pointer' onClick={() => setWidth(8000)}>
-                    8000
+                <div className='border px-2 py-1 cursor-pointer' onClick={() => setWidth(80000)}>
+                    80000
                 </div>
 
 
@@ -73,14 +81,30 @@ export default function ImageInfo({ image, baseURL }: ImageInfoProps) {
                 </div>
                 <div className='flex justify-between'>
                     <span className='text-muted-fg'>FINAL SIZE</span>
-                    {finalSize &&
-                        <span className='flex items-center gap-1'>
+                    {finalSize && difference &&
+                        <div className='flex items-center gap-2'>
+
+
                             <MotionNumber
                                 value={finalSize.value}
                                 format={{ notation: 'compact' }}
-                                locales="en-US" />
-                            {finalSize.unit}
-                        </span>
+                                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 2, flexDirection: 'row-reverse' }}
+                                first={() => (
+                                    <span className='text-muted-fg'>{finalSize.unit}</span>
+                                )}
+                                after={() => (
+                                    <MotionNumber
+                                        value={difference?.percent}
+                                        format={{ style: 'percent', maximumFractionDigits: 1 }}
+                                        animate={{ backgroundColor: difference?.type === 'increase' ? '#15803d' : '#ef4444' }}
+                                        style={{ minWidth: 80, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 2 }}
+                                        first={() => (
+                                            <IconChevronDoubleDown className='w-5' />
+                                        )}
+                                    />
+                                )}
+                            />
+                        </div>
                     }
                 </div>
             </div>
