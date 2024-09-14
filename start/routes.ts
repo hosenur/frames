@@ -15,12 +15,11 @@ const ipx = createIPX({
 });
 const ipxServer = createIPXNodeServer(ipx);
 
-import router from '@adonisjs/core/services/router';
 import AuthController from '#controllers/auth_controller';
-import { middleware } from './kernel.js';
-import ImagesController from '#controllers/images_controller';
 import DashboardController from '#controllers/dashboard_controller';
-import env from './env.js';
+import ImagesController from '#controllers/images_controller';
+import router from '@adonisjs/core/services/router';
+import { middleware } from './kernel.js';
 
 router.get('/', [DashboardController, 'index']).use(middleware.auth())
 router.post('/images/upload', [ImagesController, 'upload']).use(middleware.auth())
