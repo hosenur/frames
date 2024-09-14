@@ -1,5 +1,6 @@
 services:
   frames:
+    container_name: frames-app
     depends_on:
       - db
     build: .
@@ -8,6 +9,7 @@ services:
     env_file:
       - .env.production
   db:
+    container_name: frames-db
     image: postgres:15.3-alpine
     restart: always
     environment:
