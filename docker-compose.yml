@@ -1,0 +1,21 @@
+services:
+  frames:
+    depends_on:
+      - db
+    build: .
+    ports:
+      - 3002:8080
+    env_file:
+      - .env.production
+  db:
+    image: postgres:15.3-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: hosenur
+      POSTGRES_PASSWORD: hosenur
+      POSTGRES_DB: frames
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hosenur"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
