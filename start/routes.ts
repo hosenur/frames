@@ -8,10 +8,9 @@
 */
 
 import { createIPX, createIPXNodeServer, ipxFSStorage, ipxHttpStorage } from 'ipx';
-const STORAGE_DIR = env.get('NODE_ENV') === 'production' ? "./build/storage/uploads" : "./storage/uploads";
 // Initialize IPX
 const ipx = createIPX({
-    storage: ipxFSStorage({ dir: STORAGE_DIR }), // Local storage
+    storage: ipxFSStorage({ dir: "./storage/uploads" }), // Local storage
     httpStorage: ipxHttpStorage({ domains: ['picsum.photos'] }), // External domains
 });
 const ipxServer = createIPXNodeServer(ipx);
