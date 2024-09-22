@@ -62,11 +62,11 @@ const FileTrigger = ({
           ) : (
             <>
               {props.allowsMultiple
-                ? "Browse a files"
+                ? "Select Images"
                 : props.acceptDirectory
                   ? "Browse"
                   : "Browse a file"}
-              ...
+            
             </>
           )}
         </Button>

@@ -9,7 +9,7 @@ type ImageGalleryProps = {
 }
 export default function ImageGallery({ images, selectedImage, setSelectedImage, baseURL }: ImageGalleryProps) {
     return (
-        <div className="flex flex-wrap gap-4 w-9/12">
+        <div className="flex flex-wrap gap-4 justify- w-9/12 h-min">
             {images.map((image) => (
                 <Card
                 className="h-min"
@@ -17,7 +17,7 @@ export default function ImageGallery({ images, selectedImage, setSelectedImage, 
                     key={image.id}>
                     <img
                         src={`${baseURL}/images/w_500/${image.name}`}
-                        className="w-60 h-36 object-cover"
+                        className="w-64 h-36 object-cover"
                         alt={image.name}
                         onClick={() => setSelectedImage(image)}
                         style={{ cursor: selectedImage?.id === image.id ? 'pointer' : 'default' }}
