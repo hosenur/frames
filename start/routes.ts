@@ -11,7 +11,7 @@ import { createIPX, createIPXNodeServer, ipxFSStorage, ipxHttpStorage } from 'ip
 // Initialize IPX
 const ipx = createIPX({
     storage: ipxFSStorage({ dir: "./storage/uploads" }), // Local storage
-    httpStorage: ipxHttpStorage({ domains: ['frames-hosenur.b-cdn.net'] }), // External domains
+    httpStorage: ipxHttpStorage({ domains: ['frames.hosenur.cloud'] }), // External domains
 });
 const ipxServer = createIPXNodeServer(ipx);
 
