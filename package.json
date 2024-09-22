@@ -71,7 +71,7 @@
     "@vinejs/vine": "^2.1.0",
     "clsx": "^2.1.1",
     "edge.js": "^6.0.2",
-    "framer-motion": "^11.5.4",
+    "framer-motion": "^11.5.6",
     "ipx": "^3.0.1",
     "justd-icons": "^1.4.45",
     "luxon": "^3.5.0",

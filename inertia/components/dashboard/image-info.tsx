@@ -64,7 +64,7 @@ export default function ImageInfo({ image, baseURL }: ImageInfoProps) {
 
     }, [image])
     return (
-        <div className='border w-3/12 p-2 h-min'>
+        <div className=''>
             <img src={`${baseURL}/images/_/${image.name}`} className='w-full object-cover  h-60 transition-opacity duration-500 ease-in-out' alt={image.name} />
             <div className='flex  gap-2 items-center justify-between mt-2'>
                 <NumberField

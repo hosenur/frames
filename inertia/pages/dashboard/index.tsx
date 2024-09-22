@@ -3,9 +3,11 @@ import { useState } from 'react'
 import ImageGallery from '~/components/dashboard/image-gallery'
 import ImageInfo from '~/components/dashboard/image-info'
 import { Button } from '~/components/ui/button'
+import { Drawer } from '~/components/ui/drawer'
 import { FileTrigger } from '~/components/ui/file-trigger'
 import { Form } from '~/components/ui/form'
 import { Modal } from '~/components/ui/modal'
+import { Sheet } from '~/components/ui/sheet'
 import AppLayout from '~/layouts/AppLayout'
 import { ImageType } from '~/types'
 export default function Home(props: { images: ImageType[], baseURL: string }) {
@@ -63,11 +65,31 @@ export default function Home(props: { images: ImageType[], baseURL: string }) {
       </Modal>
       <Head title="Homepage" />
 
-      <div className='w-full flex my-4 gap-8'>
 
-        <ImageGallery baseURL={props.baseURL} images={props.images} selectedImage={null} setSelectedImage={setSelectedImage} />
-        <ImageInfo baseURL={props.baseURL} image={selectedImage} />
-      </div>
+      <ImageGallery baseURL={props.baseURL} images={props.images} selectedImage={null} setSelectedImage={setSelectedImage} />
+
+      <Sheet isOpen={selectedImage != null} onOpenChange={(open) => {
+        if (!open) {
+          setSelectedImage(null)
+        }
+      }}>
+        <Sheet.Content>
+          <Sheet.Header>
+            <Sheet.Title>Update User Settings</Sheet.Title>
+            <Sheet.Description>Adjust your preferences and configurations here.</Sheet.Description>
+          </Sheet.Header>
+          <Sheet.Body>
+            <ImageInfo baseURL={props.baseURL} image={selectedImage} />
+
+          </Sheet.Body>
+          <Sheet.Footer>
+            <Sheet.Close>Cancel</Sheet.Close>
+            <Button intent="primary" type="submit">
+              Save Changes
+            </Button>
+          </Sheet.Footer>
+        </Sheet.Content>
+      </Sheet>
     </AppLayout>
   )
 }

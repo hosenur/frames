@@ -9,7 +9,7 @@ type ImageGalleryProps = {
 }
 export default function ImageGallery({ images, selectedImage, setSelectedImage, baseURL }: ImageGalleryProps) {
     return (
-        <div className="flex flex-wrap gap-4 justify- w-9/12 h-min">
+        <div className="grid grid-cols-8 gap-2">
             {images.map((image) => (
                 <Card
                 className="h-min"
