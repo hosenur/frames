@@ -68,7 +68,7 @@ export default function Home(props: { images: ImageType[], baseURL: string }) {
 
       <ImageGallery baseURL={props.baseURL} images={props.images} selectedImage={null} setSelectedImage={setSelectedImage} />
 
-      <Sheet isOpen={selectedImage != null} onOpenChange={(open) => {
+      <Sheet  isOpen={selectedImage != null} onOpenChange={(open) => {
         if (!open) {
           setSelectedImage(null)
         }

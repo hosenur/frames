@@ -18,8 +18,14 @@ const ipxServer = createIPXNodeServer(ipx);
 import AuthController from '#controllers/auth_controller';
 import DashboardController from '#controllers/dashboard_controller';
 import ImagesController from '#controllers/images_controller';
+import ProjectsController from '#controllers/projects_controller';
 import router from '@adonisjs/core/services/router';
 import { middleware } from './kernel.js';
+
+router.group(() => {
+    router.get('/projects', [ProjectsController, 'index'])
+    router.post('/projects', [ProjectsController, 'create'])
+}).use(middleware.auth())
 
 router.get('/', [DashboardController, 'index']).use(middleware.auth())
 router.post('/images/upload', [ImagesController, 'upload']).use(middleware.auth())
