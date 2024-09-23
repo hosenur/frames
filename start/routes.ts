@@ -25,6 +25,7 @@ import { middleware } from './kernel.js';
 router.group(() => {
     router.get('/projects', [ProjectsController, 'index'])
     router.post('/projects', [ProjectsController, 'create'])
+    router.get('/projects/:id', [ProjectsController, 'show'])
 }).use(middleware.auth())
 
 router.get('/', [DashboardController, 'index']).use(middleware.auth())
