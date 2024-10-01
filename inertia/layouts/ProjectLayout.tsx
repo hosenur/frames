@@ -2,7 +2,6 @@
 
 import React from "react"
 
-import { usePage } from "@inertiajs/react"
 import {
     IconBell,
     IconBook,
@@ -10,6 +9,7 @@ import {
     IconChevronLgDown,
     IconCirclePerson,
     IconCreditCard,
+    IconDashboard,
     IconEnvelope,
     IconGallery,
     IconLogout,
@@ -24,8 +24,9 @@ import { Avatar } from "~/components/ui/avatar"
 import { Button } from "~/components/ui/button"
 import { Link } from "~/components/ui/link"
 import { Menu } from "~/components/ui/menu"
+import { usePage } from "@inertiajs/react"
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+export default function ProjectLayout({ children }: { children: React.ReactNode }) {
     const { user } = usePage().props
     return (
         <Aside.Layout

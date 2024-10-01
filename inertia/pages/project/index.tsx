@@ -1,7 +1,10 @@
-import React from 'react'
+import ProjectLayout from '~/layouts/ProjectLayout'
 
-export default function ProjectPage() {
+export default function ProjectPage(props:any) {
+    console.log(props)
     return (
-        <div>ProjectPage</div>
+        <ProjectLayout>
+            <div>ProjectPage</div>
+        </ProjectLayout>
     )
 }
